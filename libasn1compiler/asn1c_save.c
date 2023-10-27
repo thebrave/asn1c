@@ -309,8 +309,13 @@ asn1c__save_autotools_example(const char *destdir,
 	const char* confac = "configure.ac";
 	const char* makeam = "Makefile.am";
 
-	if ((access(confac, F_OK) != -1)
-	    || (access(makeam, F_OK) != -1))
+#if defined(_MSC_VER)
+	if ((_access(confac, 0) != -1)
+	    || (_access(makeam, 0) != -1))
+#else
+    if ((access(confac, F_OK) != -1)
+       || (access(makeam, F_OK) != -1))
+#endif
 	{
 		safe_fprintf(stderr, "Refusing to overwrite existing '%s' or '%s'\n", confac, makeam);
 		return -1;

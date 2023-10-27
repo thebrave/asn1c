@@ -44,6 +44,7 @@
 #ifdef _WIN32
 #include <io.h>
 #include <direct.h>
+#include <getopt.h>
 #else
 #include <dirent.h>
 #endif

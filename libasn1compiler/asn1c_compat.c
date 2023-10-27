@@ -4,7 +4,7 @@
 /* Normally file permissions are (DEFFILEMODE & ~umask(2)) */
 #ifndef	DEFFILEMODE	/* Normally in <sys/stat.h> */
 
-#ifdef	_WIN32
+#if defined(_WIN32) && !defined(__MINGW32__) && !defined(__MINGW64__)
 #define	DEFFILEMODE	(S_IREAD|S_IWRITE)
 #define REASONABLE_FILE_MODE    DEFFILEMODE
 #else

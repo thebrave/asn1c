@@ -10,7 +10,10 @@
 #include <sysexits.h>
 #endif
 #include <errno.h>
+
+#ifndef _MSC_VER
 #include <libgen.h>
+#endif
 
 #include "genhash.h"
 #include "asn1fix.h"
@@ -71,7 +74,7 @@ main(int ac, char **av) {
         fprintf(stderr, "Testing in %s...\n", top_srcdir);
         int ret = chdir(asn1_tests_dirname->buffer);
         if(ret == -1)
-            fprintf(stderr, "%s: %s\n", asn1_tests_dirname->buffer,
+            fprintf(stderr, "Failed to chdir to %s: %s\n", asn1_tests_dirname->buffer,
                     strerror(errno));
         assert(ret == 0);
         /* For some reasons, tests could be hidden under extra tests dir. */
@@ -202,7 +205,18 @@ check(const char *fname,
 
 	if(r_value == 0) {
         char *fname_copy = strdup(fname);
+#ifndef _MSC_VER
         char *test_dir = dirname(fname_copy);
+#else
+        char* tmp_drive[_MAX_DRIVE], tmp_dir[_MAX_DIR];
+        char* test_dir[_MAX_DRIVE+_MAX_DIR];
+        _splitpath(fname_copy, tmp_dir, tmp_drive, NULL, NULL);
+        memcpy_s(test_dir, _MAX_DRIVE+_MAX_DIR, tmp_drive, _MAX_DRIVE);
+        strcat_s(test_dir, _MAX_DRIVE+_MAX_DIR, tmp_dir);
+        if(strnlen_s(test_dir, _MAX_DRIVE+_MAX_DIR) == 0) {
+            strcpy(test_dir, ".");
+        }
+#endif
         abuf *skeletons_dirname = abuf_new();
 		asn1p_t *std_asn;
 
