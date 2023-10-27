@@ -97,3 +97,7 @@ doc/docsrc/*.xdv
 #code coverage
 *.gcno
 *.gcda
+
+build/
+cmake-*/
+.idea/
