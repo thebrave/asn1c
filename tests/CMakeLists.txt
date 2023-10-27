@@ -1,0 +1,5 @@
+add_subdirectory(tests-asn1c-compiler)
+add_subdirectory(tests-skeletons)
+add_subdirectory(tests-asn1c-smoke)
+add_subdirectory(tests-c-compiler)
+add_subdirectory(tests-randomized)
