@@ -32,6 +32,7 @@ CHECK_INCLUDE_FILE(sys/stat.h HAVE_SYS_STAT_H)
 CHECK_INCLUDE_FILE(sys/types.h HAVE_SYS_TYPES_H)
 CHECK_INCLUDE_FILE(unistd.h HAVE_UNISTD_H)
 CHECK_INCLUDE_FILE(string.h HAVE_STRING_H)
+CHECK_INCLUDE_FILE(inttypes.h HAVE_INTTYPES_H)
 
 configure_file(config.h.in ${PROJECT_BINARY_DIR}/config/config.h)
 include_directories(${PROJECT_BINARY_DIR}/config)
@@ -44,5 +45,6 @@ add_subdirectory(libasn1print)
 
 add_subdirectory(asn1c)
 add_subdirectory(tests)
+add_subdirectory(skeletons)
 
 add_subdirectory(win32)

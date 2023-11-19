@@ -98,7 +98,7 @@ main(int ac, char **av) {
                 assert(p);
                 debug_type_names = p;
                 debug_type_names[debug_type_names_count++] =
-                    strdup(optarg + 17);
+                    _strdup(optarg + 17);
                 debug_type_names[debug_type_names_count] = NULL;
                 break;
             } else if(strcmp(optarg, "ebug-output-origin-lines") == 0) {
