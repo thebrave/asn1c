@@ -68,11 +68,15 @@ add_library(asn1cskeletons
         xer_support.c xer_support.h)
 target_include_directories(asn1cskeletons PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
+if (WIN32)
+        target_link_libraries(asn1cskeletons win32support)
+endif ()
+
 add_executable(check-converter_example
         converter-example.c
 )
 target_link_libraries(check-converter_example asn1cskeletons)
 target_compile_definitions(check-converter_example PRIVATE NO_ASN_PDU)
 if (WIN32)
-    target_include_directories(check-converter_example SYSTEM PRIVATE ${PROJECT_SOURCE_DIR}/win32)
+        target_link_libraries(check-converter_example win32support getopt)
 endif ()

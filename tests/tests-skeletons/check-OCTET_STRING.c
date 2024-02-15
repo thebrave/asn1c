@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
 #include <time.h>
-#include <sys/time.h>
 
 #include <OCTET_STRING.h>
 #include <BIT_STRING.h>

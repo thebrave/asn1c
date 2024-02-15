@@ -18,7 +18,11 @@
 #include <string.h>    /* for strerror(3) */
 #include <sysexits.h>    /* for EX_* exit codes */
 #include <errno.h>    /* for errno */
+#ifndef HAVE_DECL_ISATTY
+#include "win32support.h"
+#else
 #include <unistd.h>    /* for isatty(3) */
+#endif
 #include <asn_application.h>
 #include <asn_internal.h>    /* for ASN__DEFAULT_STACK_MAX */
 
@@ -698,7 +702,7 @@ static void add_bytes_to_buffer(const void *data2add, size_t bytes) {
        >= (DynamicBuffer.offset + DynamicBuffer.length + bytes)) {
         DEBUG("\tNo buffer reallocation is necessary");
     } else if(bytes <= DynamicBuffer.offset) {
-        DEBUG("\tContents shifted by %ld", DynamicBuffer.offset);
+        DEBUG("\tContents shifted by %zu", DynamicBuffer.offset);
 
         /* Shift the buffer contents */
         memmove(DynamicBuffer.data,
@@ -721,7 +725,7 @@ static void add_bytes_to_buffer(const void *data2add, size_t bytes) {
         DynamicBuffer.offset = 0;
         DynamicBuffer.allocated = newsize;
         DynamicBuffer.nreallocs++;
-        DEBUG("\tBuffer reallocated to %ld (%d time)",
+        DEBUG("\tBuffer reallocated to %zu (%d time)",
             newsize, DynamicBuffer.nreallocs);
     }
 

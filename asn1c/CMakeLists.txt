@@ -13,3 +13,4 @@ if (WIN32)
 endif ()
 
 target_compile_definitions(asn1c PRIVATE DATADIR="${ASN_DATADIR}")
+target_compile_definitions(asn1c PRIVATE VERSION="${SW_VERSION}")

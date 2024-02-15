@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <assert.h>
+
+#ifndef _WIN32
 #include <sys/time.h>
+#else
+#include "win32support.h"
+#endif
 
 #include <UTF8String.h>
 

@@ -20,3 +20,7 @@ target_link_libraries(asn1compiler PUBLIC
         asn1parser
         asn1print
         asn1fix)
+
+target_compile_definitions(asn1compiler PRIVATE VERSION="${SW_VERSION}")
+
+target_compile_options(asn1compiler PRIVATE "-include${PROJECT_BINARY_DIR}/config/config.h")

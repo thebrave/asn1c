@@ -1,3 +1,10 @@
+add_library(win32support
+    win32support.c
+    win32support.h
+)
+
+target_include_directories(win32support SYSTEM PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 add_library(getopt
     getopt.c
     getopt.h

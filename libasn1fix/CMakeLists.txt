@@ -36,7 +36,5 @@ add_test(NAME check_crange COMMAND check_crange)
 
 add_executable(check_fixer check_fixer.c)
 target_link_libraries(check_fixer PUBLIC asn1fix)
+target_compile_definitions(check_fixer PRIVATE TOP_SRCDIR=${PROJECT_SOURCE_DIR})
 add_test(NAME check_fixer COMMAND check_fixer)
-
-SET_TESTS_PROPERTIES(check_fixer
-        PROPERTIES ENVIRONMENT "TOP_SRCDIR=${PROJECT_SOURCE_DIR}")

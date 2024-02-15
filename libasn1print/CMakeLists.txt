@@ -10,3 +10,4 @@ asn1parser
 asn1fix
 )
 
+target_compile_definitions(asn1print PRIVATE VERSION="${SW_VERSION}")

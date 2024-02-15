@@ -63,7 +63,8 @@ typedef	unsigned int	uint32_t;
 #define isnan _isnan
 #define finite _finite
 #define copysign _copysign
-#define	ilogb	_logb
+// #define	ilogb	_logb
+#include <inttypes.h>	/* C99 specifies this file */
 #else	/* !_MSC_VER */
 #include <stdint.h>
 #endif	/* _MSC_VER */

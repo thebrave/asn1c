@@ -27,6 +27,10 @@
 #include "asn1_common.h"
 #include "libasn1_unber_tool.h"
 
+#ifdef _WIN32
+#include <getopt.h>
+#endif
+
 #undef COPYRIGHT
 #define COPYRIGHT "Copyright (c) 2004-2019 Lev Walkin <vlm@lionet.info>\n"
 

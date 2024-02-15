@@ -70,7 +70,16 @@ static struct tm *gmtime_r(const time_t *tloc, struct tm *result) {
 #ifdef	HAVE_TM_GMTOFF
 #define	GMTOFF(tm)	((tm).tm_gmtoff)
 #else	/* HAVE_TM_GMTOFF */
+#if	defined(_WIN32)
+long
+GMTOFF(const struct tm name) {
+    long gmtoff = 0;
+    _get_timezone(&gmtoff);
+	return gmtoff;
+}
+#else   /* _WIN32 */
 #define	GMTOFF(tm)	(-timezone)
+#endif  /* _WIN32 */
 #endif	/* HAVE_TM_GMTOFF */
 
 #if	defined(_WIN32)
@@ -80,6 +89,24 @@ static struct tm *gmtime_r(const time_t *tloc, struct tm *result) {
 #pragma message( "  You must fix the code by inserting appropriate locking")
 #pragma message( "  if you want to use asn_GT2time() or asn_UT2time().")
 #pragma message( "PLEASE STOP AND READ!")
+
+int
+setenv(const char *name, const char *value, int overwrite) {
+    int errcode = 0;
+    if(!overwrite) {
+        size_t envsize = 0;
+        errcode = getenv_s(&envsize, NULL, 0, name);
+        if(errcode || envsize) return errcode;
+    }
+    return _putenv_s(name, value);
+}
+
+int
+unsetenv(const char *name) {
+    int errcode = 0;
+    return _putenv_s(name, NULL);
+}
+
 #else
 #if	(defined(_EMULATE_TIMEGM) || !defined(HAVE_TM_GMTOFF))
 #warning "PLEASE STOP AND READ!"

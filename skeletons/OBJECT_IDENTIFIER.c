@@ -145,7 +145,7 @@ OBJECT_IDENTIFIER__dump_body(const OBJECT_IDENTIFIER_t *st,
         return -1;
     }
 
-    ret = snprintf(scratch, sizeof(scratch), "%"PRIu32".%"PRIu32, arc0, arc1);
+    ret = snprintf(scratch, sizeof(scratch), "%" PRIu32 ".%" PRIu32, arc0, arc1);
     if(ret >= (ssize_t)sizeof(scratch)) {
         return -1;
     }

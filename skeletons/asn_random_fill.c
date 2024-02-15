@@ -7,6 +7,10 @@
 #include <asn_random_fill.h>
 #include <constr_TYPE.h>
 
+#ifdef _WIN32
+#include "win32support.h"
+#endif
+
 int
 asn_random_fill(const struct asn_TYPE_descriptor_s *td, void **struct_ptr,
                 size_t length) {

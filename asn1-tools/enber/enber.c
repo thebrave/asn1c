@@ -32,6 +32,10 @@
 #include <ber_tlv_tag.c>
 #include <ber_tlv_length.c>
 
+#ifdef _WIN32
+#include <getopt.h>
+#endif
+
 #undef COPYRIGHT
 #define COPYRIGHT "Copyright (c) 2004, 2005 Lev Walkin <vlm@lionet.info>\n"
 

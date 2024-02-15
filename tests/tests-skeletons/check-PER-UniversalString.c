@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <assert.h>
-#include <sys/time.h>
 
 #include <UniversalString.h>
 #include <per_support.h>

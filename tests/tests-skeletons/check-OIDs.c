@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <assert.h>
 #include <errno.h>
-#include <sys/time.h>
 
 #include <OBJECT_IDENTIFIER.h>
 #include <RELATIVE-OID.h>
+
+#ifndef _WIN32
+#include <sys/time.h>
+#else
+#include "win32support.h"
+#endif
 
 static int
 _print(const void *buffer, size_t size, void *app_key) {

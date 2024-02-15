@@ -1,0 +1,23 @@
+#ifndef _CONFIG_H_IN
+#define _CONFIG_H_IN
+
+#ifdef _WIN32
+    #include <stdlib.h>
+    #include <BaseTsd.h>
+    typedef SSIZE_T ssize_t;
+
+    #define _USE_MATH_DEFINES
+
+    #define REPLACE_GETOPT
+#endif
+
+#cmakedefine HAVE_DECL_VASPRINTF 1
+#cmakedefine HAVE_DECL_ISATTY 1
+
+#cmakedefine HAVE_SYS_STAT_H 1
+#cmakedefine HAVE_SYS_TYPES_H 1
+#cmakedefine HAVE_UNISTD_H 1
+#cmakedefine HAVE_STRING_H 1
+#cmakedefine HAVE_INTTYPES_H 1
+
+#endif // _CONFIG_H_IN
